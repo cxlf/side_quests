@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+
 phone_book = {}
 
 def save_phone_book():
@@ -11,80 +14,77 @@ def load_phone_book():
             for line in file:
                 name, number = line.strip().split(":")
                 phone_book[name] = number
-            print("Program loaded successfully.")
+            print("loading...")
+            print("program loaded successfully")
     except FileNotFoundError:
-        print("No phonebook file found.")
+        print("an error has occured") 
 
 def add():
-    name = input("Enter a name to add: ")
-    number = input("Enter a number: ")
+    name = input("enter a name to add: ")
+    number = input("enter a number: ")
+    phone_book[name] = number
+    print(f"contact {name} with the number {number} has been added")
     
-    if not name or not number:
-        print("Name and number cannot be empty.")
-        return
-    
-    if name in phone_book:
-        print(f"Contact {name} already exists.")
-    else:
-        phone_book[name] = number
-        save_phone_book()
-        print(f"Contact {name} with the number {number} has been added.")
-
 def remove():
-    name = input("Enter a name to remove: ")
+    name = input("enter a name to remove: ")
     if name in phone_book:
         del phone_book[name]
-        save_phone_book()
-        print(f"{name} has been removed.")
-    else:
-        print(f"{name} not found in the phonebook.")
+        print(f"{name} has been removed")
 
 def search():
-    name = input("Enter a name to search: ")
+    name = input("enter a name to search: ")
     if name in phone_book:
         print(f"{name}: {phone_book[name]}")
     else:
-        print(f"{name} not found in the phonebook.")
-
+        print(f"{name} could not be found")
+        
 def display():
-    if phone_book:
+    if not phone_book:
+        print("no data has been added yet")
+    else:
         for name, number in phone_book.items():
             print(f"{name}: {number}")
-    else:
-        print("Phonebook is empty.")
+        
+def wipe():
+    phone_book.clear()
+    print("all data has been wiped")
+    
+def him():
+    img = mpimg.imread("him.png")
+    plt.imshow(img)
+    plt.show()
 
-# ... (previous code)
-
-def exit_program():
-    print("Exiting program...")
+def exit():
     save_phone_book()
-    return False
+    print("exiting program...")
+    return True
 
-# Load the phone book data from a file
 load_phone_book()
 
-menu_functions = {
-    1: add,
-    2: remove,
-    3: search,
-    4: display,
-    5: exit_program
-}
-
 while True:
-    print("\nMenu")
-    print("1. Add a contact")
-    print("2. Remove a contact")
-    print("3. Search for a contact")
-    print("4. Display all contacts")
-    print("5. Exit")
+    print("\nmenu")
+    print("1. add a contact")
+    print("2. remove a contact")
+    print("3. search for a contact")
+    print("4. display all contacts")
+    print("5. wipe all data")
+    print("6. him :0000000")
+    print("7. exit")
     
-    try:
-        choice = int(input("Enter your choice: "))
-        if choice in menu_functions:
-            if not menu_functions[choice]():  # Check the return value
-                break  # Exit the loop if the function returns False
-        else:
-            print("Invalid choice. Please select a valid option (1-5).")
-    except ValueError:
-        print("Invalid input. Please enter a number (1-5) to select an option.")
+    choice = int(input("enter your choice: "))
+    
+    if choice == 1:
+        add()
+    elif choice == 2:
+        remove()
+    elif choice ==3:
+        search()
+    elif choice == 4:
+        display()
+    elif choice == 5:
+        wipe()
+    elif choice == 6:
+        him()
+    elif choice == 7:
+        if exit():
+            break

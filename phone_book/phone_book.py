@@ -77,7 +77,7 @@ while True:
         add()
     elif choice == 2:
         remove()
-    elif choice ==3:
+    elif choice == 3:
         search()
     elif choice == 4:
         display()

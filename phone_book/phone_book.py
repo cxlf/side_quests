@@ -46,8 +46,18 @@ def display():
             print(f"{name}: {number}")
         
 def wipe():
-    phone_book.clear()
-    print("all data has been wiped")
+    if confirmation():
+        phone_book.clear()
+        print("all data has been wiped")
+    else:
+        print("wipe cancelled")
+    
+def confirmation():
+    conf = input("are you sure? (y/n): ")
+    if conf == "y":
+        return True
+    elif conf == "n":
+        return False
     
 def him():
     img = mpimg.imread("him.png")

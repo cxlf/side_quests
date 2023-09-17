@@ -118,8 +118,8 @@ def play_blackjack():
             if choice == "h" or choice == "hit":
                 hit(deck, player_hand)
                 total = calc_hand(player_hand)
+                print(f"\nYour hand: {', '.join(map(str, player_hand))}")
                 print(f"Dealer's hand: {dealer_hand[0]}")
-                print(f"Your hand: {player_hand}")
                 print(f"Your total: {total}")
                 if bust(total):
                     player_balance = manage_player_balance(player_balance, player_bet, "Dealer", player_blackjack)

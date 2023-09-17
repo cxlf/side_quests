@@ -119,11 +119,10 @@ def play_blackjack():
                 hit(deck, player_hand)
                 total = calc_hand(player_hand)
                 print(f"\nYour hand: {', '.join(map(str, player_hand))}")
-                print(f"Dealer's hand: {dealer_hand[0]}")
-                print(f"Your total: {total}")
+                print(f"Dealer's hand: {dealer_hand[0]}\n")
                 if bust(total):
                     player_balance = manage_player_balance(player_balance, player_bet, "Dealer", player_blackjack)
-                    print("You busted!")
+                    print("You busted!\n")
                     break
             elif choice == "s" or choice == "stand":
                 dealer_turn(deck, dealer_hand)
@@ -134,16 +133,16 @@ def play_blackjack():
                 winner = determine_winner(player_total, dealer_total)
                 
                 if player_blackjack:
-                    print("Blackjack woohooooo!")
+                    print("Blackjack woohooooo!\n")
                     player_balance = manage_player_balance(player_balance, player_bet, winner, player_blackjack)
                 elif winner == "Tie":
-                    print("It's a tie!")
+                    print("It's a tie!\n")
                     player_balance = manage_player_balance(player_balance, player_bet, winner, player_blackjack)
                 elif dealer_turn(deck, dealer_hand):
-                    print("The Dealer busted!")
+                    print("The Dealer busted!\n")
                     player_balance = manage_player_balance(player_balance, player_bet, "Player", player_blackjack)
                 else:
-                    print(f"{winner} wins!")
+                    print(f"{winner} wins!\n")
                     player_balance = manage_player_balance(player_balance, player_bet, winner, player_blackjack)
                     
                 if player_balance == 0:

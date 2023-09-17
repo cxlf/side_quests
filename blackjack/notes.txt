@@ -1,0 +1,27 @@
+
+In a standard deck of playing cards used for blackjack, there are four aces. 
+These aces are typically represented by the symbols "A♠," "A♥," "A♦," and "A♣." 
+Each ace can have a value of either 1 or 11, depending on which value benefits the hand more without exceeding a total of 21.
+
+♠
+
+♥
+
+♦
+
+♣
+
+VALUES = [2, 3, 4, 5, 6, 7, 8, 9, 10, "king", "queen", "jack", "ace"]
+
+if any(card[0] == "king" or "queen" or "jack" for card in player_hand):
+    card = 10
+
+
+
+
+def calc_hand(player_hand):
+    for card in player_hand:
+        if card[0] in ["king", "queen", "jack"]:
+            card = 10
+        elif card[0] == "ace":
+            card = 11

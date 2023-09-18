@@ -82,6 +82,9 @@ def blackjack(hand, total):
 def bust(total):
     return total > 21
 
+def continue_game_option():
+    pass
+
 #Function to check for a winner    
 def determine_winner(player_total, dealer_total):
     if player_total > dealer_total:
@@ -150,8 +153,21 @@ def play_blackjack():
                 break
             
             elif choice == "quit":
-                print("Bye.")
+                print("You're about to hit big!")
                 return False
+        
+    if player_balance == 0:
+        print("You ran out of money!")
+        continue_game = str(input("Do you want to continue the game (y/n)? "))
+        if continue_game == "y" or continue_game == "yes":
+            play_blackjack()
+        else:
+            print("What a brokie...")
           
 if __name__ == "__main__":
-    play_blackjack()
+    while True:
+        play_blackjack()
+        continue_game = input("Do you want to play another round (y/n)? ").lower()
+        if continue_game not in ["y", "yes"]:
+            print("What a brokie...")
+            break

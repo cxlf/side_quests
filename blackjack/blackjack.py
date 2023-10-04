@@ -1,31 +1,31 @@
 import random
 
-# Define card values and suits
+# fefine card values and suits
 SUITS = ["♥", "♦", "♣", "♠"]
 VALUES = [2, 3, 4, 5, 6, 7, 8, 9, 10, "King", "Queen", "Jack", "Ace"]
 
-# Function to create a standard deck
+# function to create a standard deck
 def create_deck():
     return [(value, suit) for suit in SUITS for value in VALUES]
 
-# Function to shuffle the deck
+# function to shuffle the deck
 def shuffle_deck(deck):
     random.shuffle(deck)
 
-#Function to display the player's and dealer's hands    
+# function to display the player's and dealer's hands    
 def display_hands(player_hand, dealer_hand):
     print(f"\nYour hand: {', '.join(map(str, player_hand))}")
     print(f"Dealer's hand: {', '.join(map(str, dealer_hand))}")
 
-# Function to initialize the player's hand
+# function to initialize the player's hand
 def init_player(deck):
     return [deck.pop(), deck.pop()]
 
-# Function to initialize the dealer's hand
+# function to initialize the dealer's hand
 def init_dealer(deck):
     return [deck.pop(), deck.pop()]
 
-# Function to manage player's balance (stub)
+# function to manage player's balance
 def manage_player_balance(player_balance, player_bet, winner, player_blackjack):
     if winner == "Player":
         player_balance += player_bet*2
@@ -37,22 +37,22 @@ def manage_player_balance(player_balance, player_bet, winner, player_blackjack):
         player_balance -= player_bet
     return player_balance
 
-# Function to get the player's bet
+# function to get the player's bet
 def get_player_bet():
     return float(input("Enter the amount you want to bet: "))
 
-# Function to perform a hit
+# function to perform a hit
 def hit(deck, hand):
     hand.append(deck.pop())
 
-# Function for the dealer's turn
+# function for the dealer's turn
 def dealer_turn(deck, dealer_hand):
     while calc_hand(dealer_hand) < 17:
         hit(deck, dealer_hand)
     return bust(calc_hand(dealer_hand))
 
 
-# Function to calculate the hand total
+# function to calculate the hand total
 def calc_hand(hand):
     total = 0
     aces = 0
@@ -67,25 +67,25 @@ def calc_hand(hand):
         else:
             total += int(value)
 
-    # Adjust for aces if total is greater than 21
+    # adjust for aces if total is greater than 21
     while total > 21 and aces > 0:
         total -= 10
         aces -= 1
 
     return total
 
-# Function to check for a blackjack
+# function to check for a blackjack
 def blackjack(hand, total):
     return len(hand) == 2 and total == 21
 
-# Function to check for a bust
+# function to check for a bust
 def bust(total):
     return total > 21
 
 def continue_game_option():
     pass
 
-#Function to check for a winner    
+#function to check for a winner    
 def determine_winner(player_total, dealer_total):
     if player_total > dealer_total:
         return "Player"
@@ -94,7 +94,7 @@ def determine_winner(player_total, dealer_total):
     else:
         return "Tie"
 
-# Function to play blackjack
+# function to play blackjack
 def play_blackjack():
     deck = create_deck()
     shuffle_deck(deck)
